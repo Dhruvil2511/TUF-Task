@@ -1,8 +1,11 @@
-import mysql2 from "mysql2";
+import mysql2 from "mysql2/promise";
 
-async function connectDb() {
-  try {
-    return mysql2.createConnection({}).promise()
-  } catch (error) {}
-}
-export default connectDb;
+const pool = mysql2.createPool({
+  host: "localhost",
+  user: "root",
+  port: "3306",
+  password: "Dhruvil@2511",
+  database: "code_submissions",
+});
+
+export { pool };
