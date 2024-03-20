@@ -9,7 +9,7 @@ import OutputDetails from "./OutputDetails";
 import { languageData } from "../../util/languageData";
 import monacoThemes from "../../themes/themelist.json";
 import Editor from "@monaco-editor/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Result from "../Pages/Result";
 
 const CodingIDE = () => {
@@ -27,6 +27,7 @@ const CodingIDE = () => {
     "katzenmilch",
     "kuroirtheme",
   ];
+  const navigate = useNavigate();
   const [code, setCode] = useState("console.log('Hello striver!');");
   const [customInput, setCustomInput] = useState("");
   const [outputDetails, setOutputDetails] = useState(null);
@@ -57,6 +58,7 @@ const CodingIDE = () => {
   };
   const handleCompile = (event) => {
     event.preventDefault();
+
     setProcessing(true);
     const formData = {
       language_id: language.id,
@@ -124,7 +126,9 @@ const CodingIDE = () => {
         setProcessing(false);
         setOutputDetails(response.data);
         showSuccessToast(`Compiled Successfully!`);
-        <Link to={<Result outputDetails={outputDetails} />} />;
+        setTimeout(() => {
+          navigate("/submissions");
+        }, 1000);
         return;
       }
     } catch (err) {

@@ -1,20 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-const Table = () => {
-  const [submissions, setSubmissions] = useState([]);
-
-  const fetchSubmissions = async () => {
-    //
-  };
-  useEffect(() => {
-    fetchSubmissions();
-  }, []);
+const Table = ({ submissions }) => {
   return (
     <>
-      <div class="table-responsive">
-        <table class="table table-striped table-hover table-borderless table-primary align-middle">
-          <thead class="table-dark">
-            <caption>Table Name</caption>
+      <div className="table-responsive">
+        <table className="table table-striped table-hover table-borderless table-primary align-middle">
+          <thead className="table-dark">
             <tr>
               <th>No.</th>
               <th>Username</th>
@@ -24,16 +15,22 @@ const Table = () => {
               <th>source code</th>
             </tr>
           </thead>
-          <tbody class="table-group-divider">
-            {submissions.length > 0 ? (
-              <tr class="table-primary">
-                <td scope="row">1</td>
-                <td>Item</td>
-                <td>Item</td>
-              </tr>
-            ) : (
-              <h3>Error fetching from db...</h3>
-            )}
+          <tbody className="table-group-divider">
+            {submissions?.length > 0 &&
+              submissions.map((submission, index) => (
+                <tr key={index} className="table-primary">
+                  <th scope="row">{index + 1}</th>
+                  <td>{submission?.username}</td>
+                  <td>{submission?.code_language}</td>
+                  <td>{submission?.standard_input}</td>
+                  <td>{submission?.standard_output}</td>
+                  <td>
+                    {submission?.source_code?.length > 100
+                      ? submission?.source_code.trim(0, 100) + "..."
+                      : submission?.source_code}
+                  </td>
+                </tr>
+              ))}
           </tbody>
           <tfoot></tfoot>
         </table>
