@@ -21,7 +21,6 @@ const getSubmissions = asyncHandler(async (req, res) => {
      ORDER BY inserted_at DESC LIMIT ? OFFSET ?`,
     [limit, skip]
   );
-  
 
   if (rows.length == 0)
     return res.status(404).json({ message: "No submissions found" });
@@ -30,14 +29,15 @@ const getSubmissions = asyncHandler(async (req, res) => {
   );
   const totalSubmissions = totalCount[0][0].count;
   const totalPages = Math.ceil(totalSubmissions / limit);
+  console.log(totalPages);
 
   try {
-    await client.setEx("submissions", 3600, JSON.stringify(rows));
-    await client.setEx("totalPages", 3600, totalPages);
+    const key = `submissions_page_${page}`;
+    await client.setEx(key, 3600, JSON.stringify(rows));
+    await client.setEx("totalPages", 3600, String(totalPages));
   } catch (error) {
     console.error("Redis cache error:", error);
   }
-
   return res.status(200).json({
     submissions: rows,
     totalPages: totalPages,
@@ -64,6 +64,10 @@ const postSubmission = asyncHandler(async (req, res) => {
   try {
     await pool.query(sql, values);
     console.log("1 record inserted");
+
+    const key = `submissions_page_${1}`;
+    await client.del(key);
+    console.log(`Cache invalidated for page 1`);
   } catch (err) {
     console.error(err);
     return res.status(500).json({ message: "Error inserting submission" });

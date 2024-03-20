@@ -12,16 +12,18 @@ const client = createClient({
 await client.connect();
 
 export const redisCache = asyncHandler(async (req, res, next) => {
-  const cachedSubmissions = await client.get("submissions");
-  const cachedTotalPages = await client.get("totalPages");
-  if (cachedSubmissions && cachedTotalPages) {
-    return res.status(200).json({
-      submissions: JSON.parse(cachedSubmissions),
-      totalPages: cachedTotalPages,
-    });
-  } else {
-    next();
+  const page = req.query.page;
+  if (page) {
+    const key = `submissions_page_${page}`;
+    const cachedSubmissions = await client.get(key);
+    if (cachedSubmissions) {
+      return res.status(200).json({
+        submissions: JSON.parse(cachedSubmissions),
+        totalPages: parseInt(await client.get("totalPages")),
+      });
+    }
   }
+  next();
 });
 
 export { client };

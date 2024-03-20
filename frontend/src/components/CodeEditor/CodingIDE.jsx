@@ -3,14 +3,11 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { defineTheme } from "../../util/defineTheme";
-import OutputWindow from "./OutputWindow";
 import CustomInput from "./CustomInput";
-import OutputDetails from "./OutputDetails";
 import { languageData } from "../../util/languageData";
 import monacoThemes from "../../themes/themelist.json";
 import Editor from "@monaco-editor/react";
 import { Link, useNavigate } from "react-router-dom";
-import Result from "../Pages/Result";
 
 const CodingIDE = () => {
   const rejectedThemes = [
@@ -151,7 +148,6 @@ const CodingIDE = () => {
       } else {
         setProcessing(false);
         setOutputDetails(response.data);
-        // showSuccessToast(`Compiled Successfully!`);
         return;
       }
     } catch (err) {
@@ -179,17 +175,6 @@ const CodingIDE = () => {
     );
   }, []);
 
-  const showSuccessToast = (msg) => {
-    toast.success(msg || `Compiled Successfully!`, {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
   const showErrorToast = (msg, timer) => {
     toast.error(msg || `Something went wrong! Please try again.`, {
       position: "top-right",
@@ -220,8 +205,9 @@ const CodingIDE = () => {
         draggable
         pauseOnHover
       />
-      <div className="mt-5 d-flex justify-content-between align-items-center flex-wrap">
-        <div className="d-flex w-75">
+      
+      <div className="ide mt-5 d-flex justify-content-between align-items-center flex-wrap">
+        <div className="d-flex w-75 left ">
           <div className="d-flex px-4 w-100">
             <div className="editor d-flex flex-column w-100 justify-content-start align-items-end">
               <div
@@ -245,7 +231,7 @@ const CodingIDE = () => {
             </div>
           </div>
         </div>
-        <div className="d-flex w-25">
+        <div className="d-flex w-25 right">
           <div className="cntnr">
             <form className="form" onSubmit={handleCompile}>
               <div className="form_front">

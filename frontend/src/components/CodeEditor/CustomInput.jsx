@@ -3,7 +3,7 @@ import React from "react";
 const CustomInput = ({ customInput, setCustomInput }) => {
   return (
     <>
-        <textarea
+      <textarea
         className="form"
         rows="5"
         value={customInput}

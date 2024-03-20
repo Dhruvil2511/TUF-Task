@@ -113,3 +113,28 @@
   cursor: pointer;
   text-decoration: underline;
 }
+
+@media only screen and (max-width: 768px) {
+  .paginate {
+    position: sticky;
+    width: 100%;
+    bottom: 0;
+    z-index: 1022;
+  }
+  .ide{
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .left{
+    width: 100% !important;
+  }
+  .right{
+    margin-top: 50px;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+}
