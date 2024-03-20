@@ -5,7 +5,7 @@ export const languageData = {
       label: "JavaScript",
       value: "javascript",
       icon: `<i class="fa-brands fa-js"></i>`,
-      boilerplate: 'console.log("Welcome to Algocraft!");'
+      boilerplate: 'console.log("Hello striver!");'
     },
     "c": {
       id: 50,
@@ -13,7 +13,7 @@ export const languageData = {
       label: "C lang",
       value: "c",
       icon: '<i class="fa-solid fa-c"></i>',
-      boilerplate: '#include <stdio.h>\n\nint main() {\n    printf("Welcome to Algocraft\\n");\n    return 0;\n}'
+      boilerplate: '#include <stdio.h>\n\nint main() {\n    printf("Hello striver\\n");\n    return 0;\n}'
     },
     "cpp": {
       id: 54,
@@ -21,7 +21,7 @@ export const languageData = {
       label: "Cpp",
       value: "cpp",
     //   icon: 'C++',
-      boilerplate: '#include <iostream>\n\nint main() {\n    std::cout << "Welcome to Algocraft" << std::endl;\n    return 0;\n}'
+      boilerplate: '#include <iostream>\n\nint main() {\n    std::cout << "Hello striver" << std::endl;\n    return 0;\n}'
     },
     "java": {
       id: 62,
@@ -29,7 +29,7 @@ export const languageData = {
       label: "Java",
       value: "java",
       icon: '<i class="fa-brands fa-java"></i>',
-      boilerplate: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Welcome to Algocraft");\n    }\n}'
+      boilerplate: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello striver");\n    }\n}'
     },
     "python": {
       id: 71,
@@ -37,6 +37,6 @@ export const languageData = {
       label: "Python",
       value: "python",
       icon: '<i class="fa-brands fa-python"></i>',
-      boilerplate: 'print("Welcome to Algocraft!")'
+      boilerplate: 'print("Hello striver!")'
     },
   };

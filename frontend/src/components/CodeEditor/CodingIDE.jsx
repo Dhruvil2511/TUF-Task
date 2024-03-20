@@ -10,6 +10,7 @@ import { languageData } from "../../util/languageData";
 import monacoThemes from "../../themes/themelist.json";
 import Editor from "@monaco-editor/react";
 import { Link } from "react-router-dom";
+import Result from "../Pages/Result";
 
 const CodingIDE = () => {
   const rejectedThemes = [
@@ -26,7 +27,7 @@ const CodingIDE = () => {
     "katzenmilch",
     "kuroirtheme",
   ];
-  const [code, setCode] = useState("console.log('Welcome to Algocraft!');");
+  const [code, setCode] = useState("console.log('Hello striver!');");
   const [customInput, setCustomInput] = useState("");
   const [outputDetails, setOutputDetails] = useState(null);
   const [processing, setProcessing] = useState(null);
@@ -54,7 +55,8 @@ const CodingIDE = () => {
     setCode(value);
     onChange("code", value);
   };
-  const handleCompile = () => {
+  const handleCompile = (event) => {
+    event.preventDefault();
     setProcessing(true);
     const formData = {
       language_id: language.id,
@@ -122,7 +124,7 @@ const CodingIDE = () => {
         setProcessing(false);
         setOutputDetails(response.data);
         showSuccessToast(`Compiled Successfully!`);
-        console.log("response.data", response.data);
+        <Link to={<Result outputDetails={outputDetails} />} />;
         return;
       }
     } catch (err) {
@@ -218,10 +220,21 @@ const CodingIDE = () => {
         </div>
         <div className="d-flex w-25">
           <div className="cntnr">
-            <form className="form">
+            <form className="form" onSubmit={handleCompile}>
               <div className="form_front">
                 <div className="form_details">Enter details</div>
-                <input placeholder="Username" className="input" type="text" />
+                <div className="d-flex flex-column mt-3  w-100">
+                  <CustomInput
+                    customInput={customInput}
+                    setCustomInput={setCustomInput}
+                  />
+                </div>
+                <input
+                  placeholder="Username"
+                  className="input"
+                  type="text"
+                  required
+                />
                 <div className="dropdown">
                   <button
                     className="btn dropdown-toggle"
@@ -268,7 +281,7 @@ const CodingIDE = () => {
                       height: "auto",
                       maxHeight: "300px",
                       overflowX: "hidden",
-                       width: "255px" 
+                      width: "255px",
                     }}
                   >
                     {Object.entries(filteredThemes).map(([value, label]) => (
@@ -295,11 +308,7 @@ const CodingIDE = () => {
                       Processing
                     </button>
                   ) : (
-                    <button
-                      className="btn"
-                      disabled={!code}
-                      onClick={handleCompile}
-                    >
+                    <button className="btn" disabled={!code}>
                       <i className="m-1 fa-solid fa-gears"></i>
                       Compile
                     </button>
@@ -307,10 +316,6 @@ const CodingIDE = () => {
                 </div>
               </div>
             </form>
-          </div>
-          <div className="d-flex flex-column justify-content-center align-items-center">
-            <div className="bahar px-4 py-2"></div>
-            <div className="bahar px-4 py-2"></div>
           </div>
         </div>
       </div>
