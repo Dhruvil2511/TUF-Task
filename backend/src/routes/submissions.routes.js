@@ -3,10 +3,11 @@ import {
   getSubmissions,
   postSubmission,
 } from "../controllers/submissions.controller.js";
+import { redisCache } from "../middlewares/redis.middleware.js";
 
 const router = Router();
 
-router.route("/submit").post(postSubmission);
-router.route("/get-submissions").get(getSubmissions);
+router.route("/post-submission").post(postSubmission);
+router.route("/get-submissions").get(redisCache, getSubmissions);
 
 export default router;

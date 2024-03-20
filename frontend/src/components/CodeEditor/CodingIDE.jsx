@@ -29,6 +29,7 @@ const CodingIDE = () => {
   ];
   const navigate = useNavigate();
   const [code, setCode] = useState("console.log('Hello striver!');");
+  const [username, setUsername] = useState("");
   const [customInput, setCustomInput] = useState("");
   const [outputDetails, setOutputDetails] = useState(null);
   const [processing, setProcessing] = useState(null);
@@ -101,6 +102,31 @@ const CodingIDE = () => {
       });
   };
 
+  const postSubmission = async () => {
+    axios
+      .post(
+        import.meta.env.VITE_BASE_URL + "api/v1/submissions/post-submission",
+        {
+          outputDetails: outputDetails,
+          username: username,
+          language: language,
+          stdin: customInput.trim() === "" ? "NA" : customInput,
+          code: code,
+        }
+      )
+      .then((res) => {
+        navigate("/submissions");
+      })
+      .catch((err) => {
+        showErrorToast(err.response);
+      });
+  };
+  useEffect(() => {
+    if (outputDetails) {
+      postSubmission();
+    }
+  }, [outputDetails]);
+
   const checkStatus = async (token) => {
     const options = {
       method: "GET",
@@ -125,10 +151,7 @@ const CodingIDE = () => {
       } else {
         setProcessing(false);
         setOutputDetails(response.data);
-        showSuccessToast(`Compiled Successfully!`);
-        setTimeout(() => {
-          navigate("/submissions");
-        }, 1000);
+        // showSuccessToast(`Compiled Successfully!`);
         return;
       }
     } catch (err) {
@@ -227,17 +250,12 @@ const CodingIDE = () => {
             <form className="form" onSubmit={handleCompile}>
               <div className="form_front">
                 <div className="form_details">Enter details</div>
-                <div className="d-flex flex-column mt-3  w-100">
-                  <CustomInput
-                    customInput={customInput}
-                    setCustomInput={setCustomInput}
-                  />
-                </div>
                 <input
                   placeholder="Username"
                   className="input"
                   type="text"
                   required
+                  onChange={(event) => setUsername(event.target.value)}
                 />
                 <div className="dropdown">
                   <button
@@ -301,6 +319,12 @@ const CodingIDE = () => {
                     ))}
                   </ul>
                 </div>
+                <div className="d-flex flex-column mt-3  w-100">
+                  <CustomInput
+                    customInput={customInput}
+                    setCustomInput={setCustomInput}
+                  />
+                </div>
                 <div>
                   {processing ? (
                     <button
@@ -314,7 +338,7 @@ const CodingIDE = () => {
                   ) : (
                     <button className="btn" disabled={!code}>
                       <i className="m-1 fa-solid fa-gears"></i>
-                      Compile
+                      Submit
                     </button>
                   )}
                 </div>
