@@ -29,8 +29,6 @@ const getSubmissions = asyncHandler(async (req, res) => {
   );
   const totalSubmissions = totalCount[0][0].count;
   const totalPages = Math.ceil(totalSubmissions / limit);
-  console.log(totalPages);
-
   try {
     const key = `submissions_page_${page}`;
     await client.setEx(key, 3600, JSON.stringify(rows));
@@ -56,7 +54,7 @@ const postSubmission = asyncHandler(async (req, res) => {
   else finalOutput = "api quota exceeded";
 
   const sql =
-    "INSERT INTO submissions (id, username, code_language, standard_input, standard_output, source_code) VALUES (?, ?, ?, ?, ?, ?)";
+    "INSERT INTO submissions (id, username, code_language, standard_input, standard_output, source_code,inserted_at) VALUES (?, ?, ?, ?, ?, ?,NOW())";
   const values = [uuidv4(), username, language.name, stdin, finalOutput, code];
 
   try {
