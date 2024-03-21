@@ -9,9 +9,8 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://code-ide-x.web.app/",
-      process.env.CORS_ORIGIN,
-      "http://localhost:5173",
+      "https://code-ide-x.web.app/", 
+      
     ],
   })
 );
