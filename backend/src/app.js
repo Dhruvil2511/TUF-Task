@@ -8,10 +8,8 @@ const app = express();
 
 app.use(
   cors({
-    origin: [
-      "https://code-ide-x.web.app/", 
-      
-    ],
+    origin: "https://code-ide-x.web.app/",
+    credentials: true,
   })
 );
 
