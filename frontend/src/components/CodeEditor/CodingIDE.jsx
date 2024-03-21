@@ -10,20 +10,6 @@ import Editor from "@monaco-editor/react";
 import { Link, useNavigate } from "react-router-dom";
 
 const CodingIDE = () => {
-  const rejectedThemes = [
-    "cobalt2",
-    "dracula",
-    "githubdark",
-    "githublight",
-    "idle",
-    "slushandpoppies",
-    "nord",
-    "monokaibright",
-    "merbivoresoft",
-    "lazy",
-    "katzenmilch",
-    "kuroirtheme",
-  ];
   const navigate = useNavigate();
   const [code, setCode] = useState("console.log('Hello striver!');");
   const [username, setUsername] = useState("");
@@ -32,12 +18,7 @@ const CodingIDE = () => {
   const [processing, setProcessing] = useState(null);
   const [theme, setTheme] = useState({});
   const [language, setLanguage] = useState(languageData["javascript"]);
-  const filteredThemes = Object.entries(monacoThemes)
-    .filter(([value]) => !rejectedThemes.includes(value))
-    .reduce((obj, [value, label]) => {
-      obj[value] = label;
-      return obj;
-    }, {});
+  const filteredThemes = monacoThemes;
 
   const onChange = (action, data) => {
     switch (action) {
@@ -205,7 +186,7 @@ const CodingIDE = () => {
         draggable
         pauseOnHover
       />
-      
+
       <div className="ide mt-5 d-flex justify-content-between align-items-center flex-wrap">
         <div className="d-flex w-75 left ">
           <div className="d-flex px-4 w-100">

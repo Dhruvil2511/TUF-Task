@@ -1,32 +1,23 @@
 import { loader } from "@monaco-editor/react";
 const monacoThemes = {
-  active4d: "Active4D",
   "all-hallows-eve": "All Hallows Eve",
-  amy: "Amy",
+  "amy": "Amy",
   "birds-of-paradise": "Birds of Paradise",
-  blackboard: "Blackboard",
+  "blackboard": "Blackboard",
   "brilliance-black": "Brilliance Black",
-  "brilliance-dull": "Brilliance Dull",
-  "chrome-devtools": "Chrome DevTools",
   "clouds-midnight": "Clouds Midnight",
-  clouds: "Clouds",
-  cobalt: "Cobalt",
-  dawn: "Dawn",
-  dreamweaver: "Dreamweaver",
-  eiffel: "Eiffel",
-  "espresso-libre": "Espresso Libre",
-  github: "GitHub",
-  idle: "IDLE",
-  katzenmilch: "Katzenmilch",
-  "kuroir-theme": "Kuroir Theme",
-  lazy: "LAZY",
+  "cobalt": "Cobalt",
+  "dawn": "Dawn",
+  "github-dark": "GitHub Dark",
+  "github": "GitHub",
+  "idle": "IDLE",
+  "lazy": "LAZY",
   "magicwb--amiga-": "MagicWB (Amiga)",
-  "merbivore-soft": "Merbivore Soft",
-  merbivore: "Merbivore",
-  "monokai-bright": "Monokai Bright",
-  monokai: "Monokai",
+  "merbivore": "Merbivore",
+  "monokai": "Monokai",
   "night-owl": "Night Owl",
-  "oceanic-next": "Oceanic_Next",
+  "nord": "Nord",
+  "oceanic-next": "Oceanic_Next"
 };
   
 
@@ -42,7 +33,7 @@ const defineTheme = (theme) => {
         });
       } else {
         console.error("Theme not found:", theme);
-        resolve(); // Resolve the promise even if theme not found
+        resolve(); 
       }
     });
   });

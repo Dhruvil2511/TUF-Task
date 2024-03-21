@@ -79,8 +79,7 @@ const Result = () => {
       >
         <ul className="pagination justify-content-center">
           <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-            <button
-              style={{ backgroundColor: "#CFE2FF" }}
+            <button 
               className="page-link"
               onClick={() => setCurrentPage(currentPage - 1)}
             >
@@ -94,8 +93,8 @@ const Result = () => {
           </li>
           <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
             <button
-              style={{ backgroundColor: "#CFE2FF" }}
-              className="page-link"
+            style={{backgroundColor:"blue", color:"white"}}
+              className="page-link "
               onClick={() => setCurrentPage(currentPage + 1)}
             >
               Next
