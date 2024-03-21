@@ -11,7 +11,7 @@ app.use(
     origin: "*",
   })
 );
-
+  
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 

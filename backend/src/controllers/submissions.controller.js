@@ -68,6 +68,8 @@ const postSubmission = asyncHandler(async (req, res) => {
     console.error(err);
     return res.status(500).json({ message: "Error inserting submission" });
   }
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", true);
   return res.status(200).json({ message: "Success" });
 });
 
