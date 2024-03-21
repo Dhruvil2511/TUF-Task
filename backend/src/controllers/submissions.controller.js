@@ -2,12 +2,9 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { pool } from "../db/connectDb.js";
 import { v4 as uuidv4 } from "uuid";
 import "dotenv/config.js";
-import { connectRedis } from "../db/connectRedis.js";
-
-const client = connectRedis();
+import { client } from "../app.js";
 
 const getSubmissions = asyncHandler(async (req, res) => {
-
   let page = req.query.page;
   let limit = req.query.limit;
 
@@ -49,7 +46,6 @@ const getSubmissions = asyncHandler(async (req, res) => {
 
 const postSubmission = asyncHandler(async (req, res) => {
   const { outputDetails, username, language, stdin, code } = req.body;
-
 
   let finalOutput = "";
   let statusId = outputDetails?.status?.id;

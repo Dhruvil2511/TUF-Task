@@ -10,6 +10,7 @@ async function connectRedis() {
       },
     });
     await client.connect();
+    console.log("Connected to redis")
     return client;
   } catch (error) {
     console.error(error);

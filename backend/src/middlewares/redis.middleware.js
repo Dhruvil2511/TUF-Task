@@ -1,15 +1,7 @@
-import { createClient } from "redis";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import "dotenv/config.js";
-const client = createClient({
-  password: process.env.REDIS_PASSWORD,
-  socket: {
-    host: process.env.REDIS_HOST,
-    port: process.env.REDIS_PORT,
-  },
-});
+import { client } from "../app.js";
 
-await client.connect();
 export const redisCache = asyncHandler(async (req, res, next) => {
   const page = req.query.page;
   if (page) {
@@ -24,5 +16,3 @@ export const redisCache = asyncHandler(async (req, res, next) => {
   }
   next();
 });
-
-export { client };
