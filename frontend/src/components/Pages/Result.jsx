@@ -19,6 +19,7 @@ const Result = () => {
             page: currentPage,
             limit: 10,
           },
+          withCredentials: true,
         }
       )
       .then((res) => {
@@ -68,40 +69,44 @@ const Result = () => {
           />
         </div>
         <nav
-        aria-label="Page navigation"
-        className="mt-5 paginate"
-        style={{
-          position: "fixed",
-          bottom: 0,
-          left: "50%",
-          transform: "translateX(-50%)",
-        }}
-      >
-        <ul className="pagination justify-content-center">
-          <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-            <button 
-              className="page-link"
-              onClick={() => setCurrentPage(currentPage - 1)}
+          aria-label="Page navigation"
+          className="mt-5 paginate"
+          style={{
+            position: "fixed",
+            bottom: 0,
+            left: "50%",
+            transform: "translateX(-50%)",
+          }}
+        >
+          <ul className="pagination justify-content-center">
+            <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+              <button
+                className="page-link"
+                onClick={() => setCurrentPage(currentPage - 1)}
+              >
+                Previous
+              </button>
+            </li>
+            <li className="page-item disabled">
+              <span className="page-link">
+                Page {currentPage} of {totalPages}
+              </span>
+            </li>
+            <li
+              className={`page-item ${
+                currentPage === totalPages ? "disabled" : ""
+              }`}
             >
-              Previous
-            </button>
-          </li>
-          <li className="page-item disabled">
-            <span className="page-link">
-              Page {currentPage} of {totalPages}
-            </span>
-          </li>
-          <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
-            <button
-            style={{backgroundColor:"blue", color:"white"}}
-              className="page-link "
-              onClick={() => setCurrentPage(currentPage + 1)}
-            >
-              Next
-            </button>
-          </li>
-        </ul>
-      </nav>
+              <button
+                style={{ backgroundColor: "blue", color: "white" }}
+                className="page-link "
+                onClick={() => setCurrentPage(currentPage + 1)}
+              >
+                Next
+              </button>
+            </li>
+          </ul>
+        </nav>
       </div>
     </>
   );

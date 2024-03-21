@@ -86,6 +86,9 @@ const CodingIDE = () => {
           language: language,
           stdin: customInput.trim() === "" ? "NA" : customInput,
           code: code,
+        },
+        {
+          withCredentials:true
         }
       )
       .then((res) => {
