@@ -2,9 +2,12 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { pool } from "../db/connectDb.js";
 import { v4 as uuidv4 } from "uuid";
 import "dotenv/config.js";
-import { client } from "../middlewares/redis.middleware.js";
+import { connectRedis } from "../db/connectRedis.js";
+
+const client = connectRedis();
 
 const getSubmissions = asyncHandler(async (req, res) => {
+
   let page = req.query.page;
   let limit = req.query.limit;
 
@@ -46,8 +49,7 @@ const getSubmissions = asyncHandler(async (req, res) => {
 
 const postSubmission = asyncHandler(async (req, res) => {
   const { outputDetails, username, language, stdin, code } = req.body;
-  if (!outputDetails)
-    return res.status(404).json({ message: "output details not found" });
+
 
   let finalOutput = "";
   let statusId = outputDetails?.status?.id;
@@ -55,7 +57,7 @@ const postSubmission = asyncHandler(async (req, res) => {
   else if (statusId === 3 && atob(outputDetails.stdout) !== null)
     finalOutput = atob(outputDetails.stdout);
   else if (statusId === 5) finalOutput = "Time limit exceeded";
-  else finalOutput = atob(outputDetails.stderr);
+  else finalOutput = "api quota exceeded";
 
   const sql =
     "INSERT INTO submissions (id, username, code_language, standard_input, standard_output, source_code) VALUES (?, ?, ?, ?, ?, ?)";

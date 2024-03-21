@@ -4,8 +4,8 @@ const Table = ({ submissions,currentPage,limit }) => {
   return (
     <>
       <div className="table-responsive">
-        <table className="table table-striped table-hover table-borderless table-primary align-middle text-center">
-          <thead className="table-dark">
+        <table className="table  table-hover table-borderless table-primary align-middle text-center">
+          <thead className="table-dark  tbdark">
             <tr>
               <th style={{ width: "10%" }}>No.</th>
               <th style={{ width: "15%" }}>Username</th>

@@ -10,7 +10,6 @@ const client = createClient({
 });
 
 await client.connect();
-
 export const redisCache = asyncHandler(async (req, res, next) => {
   const page = req.query.page;
   if (page) {

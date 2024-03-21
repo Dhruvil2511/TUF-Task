@@ -5,18 +5,17 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --bs-gradient: linear-gradient(90deg, #42A5EA 0%, rgba(36, 36, 36, 1) 100%);
+  --bs-gradient: linear-gradient(90deg, red 0%, rgba(36, 36, 36, 1) 100%);
 }
 
 html,
 body {
-  background-color: #242424;
+  background-color: rgba(36, 36, 36, 1) !important;
   height: 100vh;
   width: 100%;
   margin: 0;
@@ -29,10 +28,7 @@ body {
   scroll-behavior: smooth;
 }
 
-a{
+a {
   text-decoration: none;
   color: white;
 }
-
-
-

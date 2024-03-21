@@ -60,7 +60,7 @@ const Result = () => {
       )}
       <div className="container-fluid w-100">
         <div className="mt-3">
-          <h3 className="text-white text-center">Submissions</h3>
+          <h3 className="text-dark text-center">Submissions</h3>
           <Table
             submissions={submissions}
             currentPage={currentPage}

@@ -27,12 +27,15 @@
   gap: 20px;
   /* position: absolute; */
   backface-visibility: hidden;
+  background-color: #1E1E1E;
   padding: 38px 45px;
   border-radius: 15px;
   box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 1),
     inset -1px -1px 5px rgba(255, 255, 255, 0.6);
 }
-
+.tbdark{
+  background-color: black !important;
+}
 
 
 .form_details {
@@ -48,7 +51,6 @@
   outline: none;
   transition: 0.35s;
   padding: 0px 7px;
-  background-color: #212121;
   border-radius: 6px;
   border: 2px solid #212121;
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
