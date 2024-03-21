@@ -54,8 +54,8 @@ const postSubmission = asyncHandler(async (req, res) => {
   else finalOutput = "api quota exceeded";
 
   const sql =
-    "INSERT INTO submissions (id, username, code_language, standard_input, standard_output, source_code,inserted_at) VALUES (?, ?, ?, ?, ?, ?,NOW())";
-  const values = [uuidv4(), username, language.name, stdin, finalOutput, code];
+    "INSERT INTO submissions (username, code_language, standard_input, standard_output, source_code, inserted_at) VALUES (?, ?, ?, ?, ?, NOW())";
+  const values = [username, language.name, stdin, finalOutput, code];
 
   try {
     await pool.query(sql, values);

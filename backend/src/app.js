@@ -8,7 +8,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["https://code-ide-x.web.app", "https://code-editor-x.vercel.app"],
+    origin: ["https://code-ide-x.web.app", "https://code-editor-x.vercel.app","http://localhost:5173"],
     credentials: true,
   })
 );
